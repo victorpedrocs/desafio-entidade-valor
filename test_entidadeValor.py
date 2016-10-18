@@ -11,7 +11,9 @@ schema = [
 # problema é atacado de forma didática, utilizando TDD e baby steps.
 # Cada teste é um pequeno passo em direção à solução do problema
 
+
 class TestEntidadeValor(unittest.TestCase):
+
     def test_uma_tupla(self):
         fatos = [('joão', 'endereço', 'rua alice, 10', True)]
         self.assertEqual(entidadesAtivas(fatos, schema), fatos)
