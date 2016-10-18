@@ -17,10 +17,12 @@ def elementosCardinalidadeMany( atributo, fatos):
 
 def entidadesAtivas(fatos, schema):
     lista_retorno = []
-    for atributo in schema:
-        if atributo[2] == 'one':
-            lista_retorno.extend( elementosCardinalidadeOne(atributo, fatos) )
-        else:
-            lista_retorno.extend( elementosCardinalidadeMany(atributo, fatos) )
+    for k, g in groupby( fatos, lambda x: x[0] ):
+        entidades = list(g)
+        for atributo in schema:
+            if atributo[2] == 'one':
+                lista_retorno.extend( elementosCardinalidadeOne(atributo, entidades) )
+            else:
+                lista_retorno.extend( elementosCardinalidadeMany(atributo, entidades) )
 
     return lista_retorno
