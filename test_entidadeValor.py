@@ -65,13 +65,31 @@ class TestEntidadeValor(unittest.TestCase):
             ('gabriel', 'telefone', '56789-1010', True),
         ]
         resultado = [
-            ('joão', 'endereço', 'rua einstein, 88', True),
-            ('joão', 'telefone', '91234-5555', True),
             ('gabriel', 'telefone', '98888-1111', True),
             ('gabriel', 'telefone', '56789-1010', True),
+            ('joão', 'endereço', 'rua einstein, 88', True),
+            ('joão', 'telefone', '91234-5555', True),
         ]
         self.assertEqual(entidadesAtivas(fatos, schema), resultado)
 
+    def test_remocao_one(self):
+        fatos = [
+            ('joão', 'endereço', 'rua alice, 10', True),
+            ('joão', 'endereço', 'rua einstein, 88', True),
+            ('joão', 'telefone', '234-5678', True),
+            ('joão', 'telefone', '91234-5555', True),
+            ('joão', 'telefone', '234-5678', False),
+            ('gabriel', 'telefone', '98888-1111', True),
+            ('gabriel', 'telefone', '56789-1010', True),
+            ('joão', 'endereço', 'rua einstein, 88', False),
+        ]
+        resultado = [
+            ('gabriel', 'telefone', '98888-1111', True),
+            ('gabriel', 'telefone', '56789-1010', True),
+            ('joão', 'endereço', 'rua alice, 10', True),
+            ('joão', 'telefone', '91234-5555', True),
+        ]
+        self.assertEqual(entidadesAtivas(fatos, schema), resultado)
 
 
 if __name__ == "__main__":
