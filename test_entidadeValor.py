@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
-from entidadeValor import *
+from entidadeValor import entidadesAtivas
 
 schema = [
     ('endereço', 'cardinality', 'one'),

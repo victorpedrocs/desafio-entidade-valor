@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
 from itertools import groupby
 
+def removerElementos(lista):
+    remocoes = list( filter( lambda x: not x[-1], lista ) )
+    for remove in remocoes:
+        lista = list( filter( lambda x: x[2] != remove[2], lista ) )
+    return lista
+
 def elementosCardinalidadeOne(atributo, fatos):
     lista_retorno = []
     lista_one = list( filter( lambda x: x[1] == atributo[0], fatos ) )
 
-    remocoes = list( filter( lambda x: not x[-1], lista_one ) )
-    for remove in remocoes:
-        lista_one = list( filter( lambda x: x[2] != remove[2], lista_one ) )
+    lista_one = removerElementos(lista_one)
 
     for k, g in groupby( lista_one, lambda x: x[1] ):
         lista_retorno.append( list(g)[-1] )
@@ -16,9 +20,7 @@ def elementosCardinalidadeOne(atributo, fatos):
 
 def elementosCardinalidadeMany( atributo, fatos):
     lista_many = list( filter( lambda x: x[1] == atributo[0], fatos ) )
-    remocoes = list( filter( lambda x: not x[-1], lista_many ) )
-    for remove in remocoes:
-        lista_many = list( filter( lambda x: x[2] != remove[2], lista_many ) )
+    lista_many = removerElementos(lista_many)
     return lista_many
 
 def entidadesAtivas(fatos, schema):
