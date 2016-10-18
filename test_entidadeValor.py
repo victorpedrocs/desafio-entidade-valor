@@ -40,6 +40,21 @@ class TestEntidadeValor(unittest.TestCase):
         ]
         self.assertEqual(entidadesAtivas(fatos, schema), resultado)
 
+    def test_remocao_many(self):
+        fatos = [
+            ('joão', 'endereço', 'rua alice, 10', True),
+            ('joão', 'endereço', 'rua einstein, 88', True),
+            ('joão', 'telefone', '234-5678', True),
+            ('joão', 'telefone', '91234-5555', True),
+            ('joão', 'telefone', '234-5678', False),
+        ]
+        resultado = [
+            ('joão', 'endereço', 'rua einstein, 88', True),
+            ('joão', 'telefone', '91234-5555', True),
+        ]
+        self.assertEqual(entidadesAtivas(fatos, schema), resultado)
+
+
 
 if __name__ == "__main__":
     unittest.main()
