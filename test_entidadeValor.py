@@ -16,6 +16,16 @@ class TestEntidadeValor(unittest.TestCase):
         fatos = [('joão', 'endereço', 'rua alice, 10', True)]
         self.assertEqual(entidadesAtivas(fatos, schema), fatos)
 
+    def test_duas_tuplas_cardinalidade_um(self):
+        fatos = [
+            ('joão', 'endereço', 'rua alice, 10', True),
+            ('joão', 'endereço', 'rua einstein, 88', True),
+        ]
+        resultado = [
+            ('joão', 'endereço', 'rua einstein, 88', True)
+        ]
+        self.assertEqual(entidadesAtivas(fatos, schema), resultado)
+
 
 
 if __name__ == "__main__":
